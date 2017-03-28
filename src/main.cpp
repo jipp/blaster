@@ -3,37 +3,47 @@
 #include <FastLED.h>
 #include <Bounce2.h>
 
+// defines
 #define BUTTON 0
 #define DATA_PIN 1
+#define NUM_LEDS 1
+
 
 // LEDS variables
-#define NUM_LEDS 1
 CRGB leds[NUM_LEDS];
 CRGB normalColor = CRGB::Yellow;
 CRGB hotColor = CRGB::Red;
 CRGB shotColor = normalColor;
 
+
 // global brightness
-const int brightness = 128;
+const int brightness = 192;
+
 
 // timer
 unsigned long ledOnStart = 0;
 const unsigned long leoOnDuration = 75;
 unsigned long ledOffStart = 0;
 const unsigned long leoOffDuration = 100;
+
+
+// handle LED behaviour
 bool ledOn = true;
 int count = 0;
 const int countMax = 30;
 const int refresh = 3000;
 
+
 // debouncing
 Bounce debouncer = Bounce();
 const int debouncerTimer = 10;
+
 
 void blink();
 void showOn();
 void showOff();
 void setAllLedColor(CRGB);
+
 
 void setup() {
   FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);
